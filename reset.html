@@ -1,69 +1,103 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GANTI PASSWORD ABANGKUHHH!</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-            background-color: #f7f7f7;
-        }
-        .login-form {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-            width: 300px;
-        }
-        .input-field {
-            margin: 10px 0;
-            padding: 10px;
-            width: 100%;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .copy-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-            border-radius: 5px;
-        }
-        .copy-btn:hover {
-            background-color: #45a049;
-        }
-        .notification {
-            display: none;
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 16px;
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-        h1 {
-            font-size: 24px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GANTI PASSWORD ABANGKUHHH!</title>
+  <style>
+    :root {
+      --bg: #f7f7f7;
+      --text: #000;
+      --box: #fff;
+      --btn: #4caf50;
+      --btn-hover: #45a049;
+    }
+
+    body.dark-mode {
+      --bg: #121212;
+      --text: #eee;
+      --box: #1e1e1e;
+      --btn: #6dd47e;
+      --btn-hover: #57c773;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .login-form {
+      background-color: var(--box);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      width: 300px;
+    }
+
+    .input-field {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    .copy-btn, .theme-btn {
+      background-color: var(--btn);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+      border-radius: 5px;
+      transition: transform 0.2s ease;
+    }
+
+    .copy-btn:hover, .theme-btn:hover {
+      background-color: var(--btn-hover);
+      transform: scale(1.05);
+    }
+
+    .copy-btn:active, .theme-btn:active {
+      transform: scale(0.95);
+    }
+
+    .notification {
+      display: none;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--btn);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 16px;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+  </style>
 </head>
 <body>
-    <h1>GANTI PASSWORD ABANGKUHHH!</h1>
-    <div class="login-form">
-        <label for="full-text">Silahkan di Login Ya bosku Dengan</label>
-        <textarea id="full-text" class="input-field" rows="8" readonly>
+  <h1>GANTI PASSWORD ABANGKUHHH!</h1>
+  <button class="theme-btn" onclick="toggleTheme()">🌗 Ganti Tema</button>
+
+  <div class="login-form">
+    <label for="full-text">Silahkan di Login Ya bosku Dengan</label>
+    <textarea id="full-text" class="input-field" rows="8" readonly>
 Silahkan di Login Ya bosku Dengan
 
 ID :
@@ -73,75 +107,56 @@ Dan ubah password bosku sesuai dengan keinginan bosku
 Jangan beritahu password bosku kepada orang lain untuk keamanan akun bosku 🙂
 
 Link login : https://toto12bulan.org
-        </textarea><br>
+    </textarea><br />
+    <button class="copy-btn" onclick="copyAndChangePassword()">Copy Cok!</button>
+  </div>
 
-        <button class="copy-btn" id="copyBtn" onclick="copyAndChangePassword()">Copy Cok!</button>
-    </div>
+  <div class="notification" id="notification">Teks berhasil disalin!</div>
 
-    <div class="notification" id="notification">Teks berhasil disalin!</div>
+  <script>
+    const passwords = ["bunga123", "kucing456", "apel789", "matahari22"];
 
-    <script>
-        // 💾 Password dasar
-        let passwords = [
-            "bunga123", "kucing456", "apel789", "matahari22", "pasir333", "bintang99", "laptop444", "buku567", "cinta11", "kupu23",
-            "pelangi88", "musim01", "tepi44", "salju55", "pohon66", "laut12", "gunung77", "coklat45", "pesta67", "melodi33", "angin21",
-            "taman99", "dunia88", "sunset00", "mata33", "bola77", "rumah11", "petualang66", "karunia44", "hujan77", "hati11", "buku22",
-            "cinta33", "pikiran00", "air22", "bambu44", "senja99", "pelukan66", "siang11", "waktu77", "sepeda22", "kaki33", "lautan11",
-            "kejutan00", "kota33", "roti22", "alunan99", "pelita44", "batu77", "rembulan88", "cahaya55", "jalan00", "petir44", "keindahan22",
-            "pelangi33", "hutan11", "permata77", "kearifan44", "kebahagiaan55", "cinta22", "kucing11", "kenangan44", "jalan66", "angka77",
-            "bunga33", "sungai11", "ombak22", "wisata33", "tarian00", "bunga44", "langit77", "paduan22", "keajaiban11", "sinema33", "dunia00",
-            "cinta22", "rawa33", "gema66", "senyuman44", "harmoni77", "pohon22", "puncak33", "menara11", "bahagia44", "keindahan00",
-            "sungai33", "angin22", "hati11", "matahari66", "pemandangan44", "mimpi33", "pintu77", "pelukan22", "kisah44", "cinta33",
-            "madu77", "kue88", "dunia33", "alam44", "setangkai77", "bulan123", "lumba456", "kayu789", "lautan22", "roti333", "peluru99",
-            "awan444", "sepeda567", "pintu11", "tebu23", "anggur88", "kaca01", "salju44", "gitar55", "api66", "cermin12", "kapal77", "harum45",
-            "pesta67", "selamet33", "laut99", "hujan88", "bunga01", "gerimis77", "apel33", "kupukupu44", "rumah88", "langit22",
-            "padang77", "cemara33", "minyak99", "burung11", "pisang22", "beras33", "angin44", "petir88", "bintang11", "matahari77", "minum22",
-            "pantai33", "kebun44", "gerak55", "rantai66", "merah77", "cerah11", "gunung22", "domba33", "tumbuh44", "sinar55", "keju66",
-            "setiap77", "waktu88", "tumpuk99", "tali11", "burung22", "lautan33", "putih44", "hati55", "kaki66", "benda77", "jalan88", "mobil11",
-            "hutan22", "coklat33", "embun44", "kupukupu55", "paduan66", "petualang77", "listrik88", "sayur99", "pasir22", "angin33", "rimba44",
-            "pencari55", "rindu66", "madu77", "lembah88", "sinema11", "salju22", "merah33", "pemandu44", "siang55", "wajah66", "senja77",
-            "musim88", "kandang99", "kota22", "tepi33", "ayam44", "hujan55", "mimpi66", "guling77", "kapal88", "laut99", "eskrim22", "dingin33",
-            "sate44", "rantai55", "batu66"
-        ];
+    const prefixList = ["gacor", "jitu", "bola", "maxwin"];
+    for (const prefix of prefixList) {
+      for (let i = 1; i <= 999; i++) {
+        const num = i.toString().padStart(3, "0");
+        passwords.push(`${prefix}${num}`);
+      }
+    }
 
-        // 🔁 Tambah kombinasi dari kata gacor, jitu, bola, dan maxwin (001 - 999)
-        const prefixList = ["gacor", "jitu", "bola", "maxwin"];
-        for (const prefix of prefixList) {
-            for (let i = 1; i <= 999; i++) {
-                const num = i.toString().padStart(3, '0');
-                passwords.push(`${prefix}${num}`);
-            }
-        }
+    const filteredPasswords = passwords.filter((pw) => pw.length >= 6);
 
-        // 🧼 Hapus password yang kurang dari 6 karakter
-        const filteredPasswords = passwords.filter(pw => pw.length >= 6);
+    function copyAndChangePassword() {
+      const password =
+        filteredPasswords[Math.floor(Math.random() * filteredPasswords.length)];
 
-        // 📋 Fungsi salin dan update password
-        function copyAndChangePassword() {
-            const newPassword = filteredPasswords[Math.floor(Math.random() * filteredPasswords.length)];
-            const newText = `Silahkan di Login Ya bosku Dengan
+      const newText = `Silahkan di Login Ya bosku Dengan
 
 ID :
-password: ${newPassword}
+password: ${password}
 
 Dan ubah password bosku sesuai dengan keinginan bosku
 Jangan beritahu password bosku kepada orang lain untuk keamanan akun bosku 🙂
 
 Link login : https://toto12bulan.org`;
 
-            const copyText = document.getElementById("full-text");
-            copyText.value = newText;
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            document.execCommand("copy");
+      const copyText = document.getElementById("full-text");
+      copyText.value = newText;
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      document.execCommand("copy");
 
-            const notification = document.getElementById("notification");
-            notification.style.display = "block";
-            notification.style.opacity = 1;
-            setTimeout(() => {
-                notification.style.opacity = 0;
-            }, 2000);
-        }
-    </script>
+      const notification = document.getElementById("notification");
+      notification.style.display = "block";
+      notification.style.opacity = 1;
+      setTimeout(() => {
+        notification.style.opacity = 0;
+      }, 2000);
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
 </body>
 </html>
