@@ -127,7 +127,7 @@ password: ${newPassword}
 Dan ubah password bosku sesuai dengan keinginan bosku
 Jangan beritahu password bosku kepada orang lain untuk keamanan akun bosku 🙂
 
-Link login : https://toto12bulan.org`;
+Link login : https://memek.org`;
 
             const copyText = document.getElementById("full-text");
             copyText.value = newText;
