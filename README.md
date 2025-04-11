@@ -6,17 +6,16 @@
   <title>TOTO12</title>
   <style>
     :root {
-      --bg: #f7f7f7;
       --text: #000;
-      --box: #fff;
+      --box: rgba(255, 255, 255, 0.95);
       --btn: #4caf50;
       --btn-hover: #45a049;
+      --bg-image: url('https://imagme.com/images/2025/02/21/photo_2025-02-21_01-31-20.jpeg');
     }
 
     body.dark-mode {
-      --bg: #121212;
       --text: #eee;
-      --box: #1e1e1e;
+      --box: rgba(30, 30, 30, 0.95);
       --btn: #6dd47e;
       --btn-hover: #57c773;
     }
@@ -24,19 +23,31 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      margin-top: 50px;
-      background-color: var(--bg);
+      margin: 0;
+      padding: 0;
+      background-image: var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       color: var(--text);
       transition: background 0.3s, color 0.3s;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 26px;
+      text-shadow: 1px 1px 2px #00000099;
     }
 
     .login-form {
       background-color: var(--box);
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       display: inline-block;
       width: 300px;
+      margin-top: 30px;
     }
 
     .input-field {
@@ -73,21 +84,17 @@
 
     .notification {
       display: none;
-      position: absolute;
+      position: fixed;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
       background-color: var(--btn);
       color: white;
-      padding: 10px;
+      padding: 10px 20px;
       border-radius: 5px;
       font-size: 16px;
       opacity: 0;
       transition: opacity 0.5s;
-    }
-
-    h1 {
-      font-size: 24px;
     }
   </style>
 </head>
@@ -100,7 +107,7 @@
     <textarea id="full-text" class="input-field" rows="8" readonly>
 Silahkan di Login Ya bosku Dengan
 
-ID : 
+ID :
 password:
 
 Dan ubah password bosku sesuai dengan keinginan bosku
@@ -124,15 +131,14 @@ Link login : https://toto12bulan.org
       }
     }
 
-    const filteredPasswords = passwords.filter((pw) => pw.length >= 6);
+    const filteredPasswords = passwords.filter(pw => pw.length >= 6);
 
     function copyAndChangePassword() {
-      const password =
-        filteredPasswords[Math.floor(Math.random() * filteredPasswords.length)];
+      const password = filteredPasswords[Math.floor(Math.random() * filteredPasswords.length)];
 
       const newText = `Silahkan di Login Ya bosku Dengan
 
-ID : 
+ID :
 password: ${password}
 
 Dan ubah password bosku sesuai dengan keinginan bosku
