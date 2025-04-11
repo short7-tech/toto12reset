@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GANTI PASSWORD ABANGKUHHH!</title>
   <style>
     :root {
@@ -81,7 +81,7 @@
       color: var(--text);
     }
 
-    .copy-btn, .theme-btn {
+    .copy-btn, .theme-btn, .mute-btn {
       background-color: var(--btn);
       color: white;
       padding: 10px 20px;
@@ -93,12 +93,12 @@
       transition: transform 0.2s ease;
     }
 
-    .copy-btn:hover, .theme-btn:hover {
+    .copy-btn:hover, .theme-btn:hover, .mute-btn:hover {
       background-color: var(--btn-hover);
       transform: scale(1.05);
     }
 
-    .copy-btn:active, .theme-btn:active {
+    .copy-btn:active, .theme-btn:active, .mute-btn:active {
       transform: scale(0.95);
     }
 
@@ -123,22 +123,33 @@
       font-weight: bold;
       margin-bottom: 5px;
     }
+
+    audio {
+      display: none;
+    }
   </style>
 </head>
 <body>
 
-  <!-- ❄️ SALJU -->
+  <!-- ❄️ CANVAS SALJU -->
   <canvas id="snow"></canvas>
+
+  <!-- 🎵 BACKSOUND -->
+  <audio id="backsound" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/12/07/audio_dcef74f48d.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <!-- 🎬 JUDUL GIF -->
   <div class="judul-gif">
     <img src="https://imagme.com/images/2024/11/11/gif-toto12.gif" alt="Judul GIF">
   </div>
 
-  <!-- 🌗 TOMBOL DARK MODE -->
+  <!-- 🌗 TOMBOL DARK MODE & MUTE -->
   <button class="theme-btn" onclick="toggleTheme()">🌗 Ganti Tema</button>
+  <button class="mute-btn" onclick="toggleMute()">🔊 Mute</button>
 
-  <!-- 📋 LOGIN -->
+  <!-- 📋 FORM -->
   <div class="login-form">
     <label for="full-text">Silahkan di Login Ya bosku Dengan</label>
     <textarea id="full-text" class="input-field" rows="8" readonly>
@@ -155,10 +166,10 @@ Link login : https://toto12bulan.org
     <button class="copy-btn" onclick="copyAndChangePassword()">Copy Cok!</button>
   </div>
 
-  <!-- 🔔 NOTIFIKASI -->
+  <!-- 🔔 NOTIF -->
   <div class="notification" id="notification">Teks berhasil disalin!</div>
 
-  <!-- ✨ SALJU ANIMASI -->
+  <!-- ✨ SALJU -->
   <script>
     const canvas = document.getElementById("snow");
     const ctx = canvas.getContext("2d");
@@ -224,7 +235,7 @@ Link login : https://toto12bulan.org
     animateFlakes();
   </script>
 
-  <!-- 📋 LOGIC SALIN -->
+  <!-- 📋 LOGIC PASSWORD -->
   <script>
     const passwords = ["bunga123", "kucing456", "apel789", "matahari22"];
     const prefixList = ["gacor", "jitu", "bola", "maxwin"];
@@ -264,6 +275,23 @@ Link login : https://toto12bulan.org`;
     function toggleTheme() {
       document.body.classList.toggle("dark-mode");
     }
+
+    function toggleMute() {
+      const audio = document.getElementById("backsound");
+      const muteBtn = document.querySelector(".mute-btn");
+      if (audio.muted) {
+        audio.muted = false;
+        muteBtn.textContent = "🔊 Mute";
+      } else {
+        audio.muted = true;
+        muteBtn.textContent = "🔇 Unmute";
+      }
+    }
+
+    // Set volume awal ke 50%
+    window.onload = function () {
+      document.getElementById("backsound").volume = 0.5;
+    };
   </script>
 </body>
 </html>
