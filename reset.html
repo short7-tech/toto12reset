@@ -23,21 +23,33 @@
 
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
       margin: 0;
       padding: 0;
       background-image: url('https://imagme.com/images/2025/02/21/photo_2025-02-21_01-31-20.jpeg');
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
       background-attachment: fixed;
+      background-repeat: no-repeat;
       color: var(--text);
-      transition: background 0.3s, color 0.3s;
+      transition: 0.3s ease-in-out;
+      text-align: center;
+      cursor: url('https://photoku.io/images/2025/02/12/cursor.png'), auto;
+      overflow-x: hidden;
+    }
+
+    canvas#snow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
     }
 
     .judul-gif {
       margin-top: 30px;
       margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
     }
 
     .judul-gif img {
@@ -54,6 +66,8 @@
       display: inline-block;
       width: 300px;
       margin-top: 20px;
+      position: relative;
+      z-index: 2;
     }
 
     .input-field {
@@ -67,8 +81,7 @@
       color: var(--text);
     }
 
-    .copy-btn,
-    .theme-btn {
+    .copy-btn, .theme-btn {
       background-color: var(--btn);
       color: white;
       padding: 10px 20px;
@@ -80,20 +93,18 @@
       transition: transform 0.2s ease;
     }
 
-    .copy-btn:hover,
-    .theme-btn:hover {
+    .copy-btn:hover, .theme-btn:hover {
       background-color: var(--btn-hover);
       transform: scale(1.05);
     }
 
-    .copy-btn:active,
-    .theme-btn:active {
+    .copy-btn:active, .theme-btn:active {
       transform: scale(0.95);
     }
 
     .notification {
       display: none;
-      position: absolute;
+      position: fixed;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
@@ -104,6 +115,7 @@
       font-size: 16px;
       opacity: 0;
       transition: opacity 0.5s;
+      z-index: 3;
     }
 
     label {
@@ -115,6 +127,9 @@
 </head>
 <body>
 
+  <!-- ❄️ SALJU -->
+  <canvas id="snow"></canvas>
+
   <!-- 🎬 JUDUL GIF -->
   <div class="judul-gif">
     <img src="https://imagme.com/images/2024/11/11/gif-toto12.gif" alt="Judul GIF">
@@ -123,7 +138,7 @@
   <!-- 🌗 TOMBOL DARK MODE -->
   <button class="theme-btn" onclick="toggleTheme()">🌗 Ganti Tema</button>
 
-  <!-- 📋 FORM SALIN -->
+  <!-- 📋 LOGIN -->
   <div class="login-form">
     <label for="full-text">Silahkan di Login Ya bosku Dengan</label>
     <textarea id="full-text" class="input-field" rows="8" readonly>
@@ -143,14 +158,79 @@ Link login : https://toto12bulan.org
   <!-- 🔔 NOTIFIKASI -->
   <div class="notification" id="notification">Teks berhasil disalin!</div>
 
-  <!-- ⚙️ SCRIPT -->
+  <!-- ✨ SALJU ANIMASI -->
+  <script>
+    const canvas = document.getElementById("snow");
+    const ctx = canvas.getContext("2d");
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    canvas.width = w;
+    canvas.height = h;
+
+    const maxFlakes = 100;
+    const flakes = [];
+
+    function Flake() {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.radius = Math.random() * 3 + 1;
+      this.speed = Math.random() * 1 + 0.5;
+      this.wind = Math.random() * 1 - 0.5;
+
+      this.update = function () {
+        this.y += this.speed;
+        this.x += this.wind;
+
+        if (this.y > h) {
+          this.y = 0;
+          this.x = Math.random() * w;
+        }
+        if (this.x > w || this.x < 0) {
+          this.x = Math.random() * w;
+        }
+      };
+
+      this.draw = function () {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+        ctx.fill();
+      };
+    }
+
+    function createFlakes() {
+      for (let i = 0; i < maxFlakes; i++) {
+        flakes.push(new Flake());
+      }
+    }
+
+    function animateFlakes() {
+      ctx.clearRect(0, 0, w, h);
+      for (let flake of flakes) {
+        flake.update();
+        flake.draw();
+      }
+      requestAnimationFrame(animateFlakes);
+    }
+
+    window.addEventListener("resize", () => {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+    });
+
+    createFlakes();
+    animateFlakes();
+  </script>
+
+  <!-- 📋 LOGIC SALIN -->
   <script>
     const passwords = ["bunga123", "kucing456", "apel789", "matahari22"];
     const prefixList = ["gacor", "jitu", "bola", "maxwin"];
-    for (const prefix of prefixList) {
+    for (let prefix of prefixList) {
       for (let i = 1; i <= 999; i++) {
-        const num = i.toString().padStart(3, "0");
-        passwords.push(`${prefix}${num}`);
+        passwords.push(`${prefix}${i.toString().padStart(3, '0')}`);
       }
     }
 
@@ -171,7 +251,6 @@ Link login : https://toto12bulan.org`;
       const copyText = document.getElementById("full-text");
       copyText.value = newText;
       copyText.select();
-      copyText.setSelectionRange(0, 99999);
       document.execCommand("copy");
 
       const notification = document.getElementById("notification");
