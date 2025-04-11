@@ -132,7 +132,7 @@ Link login : https://toto12bulan.org
 
       const newText = `Silahkan di Login Ya bosku Dengan
 
-ID :
+ID : 
 password: ${password}
 
 Dan ubah password bosku sesuai dengan keinginan bosku
