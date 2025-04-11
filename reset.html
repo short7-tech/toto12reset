@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TOTO12</title>
+  <title>GANTI PASSWORD ABANGKUHHH!</title>
   <style>
     :root {
+      --bg: rgba(255, 255, 255, 0.95);
       --text: #000;
-      --box: rgba(255, 255, 255, 0.95);
+      --box: #fff;
       --btn: #4caf50;
       --btn-hover: #45a049;
-      --bg-image: url('https://imagme.com/images/2025/02/21/photo_2025-02-21_01-31-20.jpeg');
     }
 
     body.dark-mode {
+      --bg: rgba(0, 0, 0, 0.8);
       --text: #eee;
-      --box: rgba(30, 30, 30, 0.95);
+      --box: #1e1e1e;
       --btn: #6dd47e;
       --btn-hover: #57c773;
     }
@@ -25,7 +26,7 @@
       text-align: center;
       margin: 0;
       padding: 0;
-      background-image: var(--bg-image);
+      background-image: url('https://imagme.com/images/2025/02/21/photo_2025-02-21_01-31-20.jpeg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -34,20 +35,25 @@
       transition: background 0.3s, color 0.3s;
     }
 
-    h1 {
-      margin-top: 40px;
-      font-size: 26px;
-      text-shadow: 1px 1px 2px #00000099;
+    .judul-gif {
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    .judul-gif img {
+      max-width: 300px;
+      height: auto;
+      filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
     }
 
     .login-form {
       background-color: var(--box);
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       display: inline-block;
       width: 300px;
-      margin-top: 30px;
+      margin-top: 20px;
     }
 
     .input-field {
@@ -61,47 +67,63 @@
       color: var(--text);
     }
 
-    .copy-btn, .theme-btn {
+    .copy-btn,
+    .theme-btn {
       background-color: var(--btn);
       color: white;
       padding: 10px 20px;
       border: none;
       cursor: pointer;
       font-size: 16px;
-      margin-top: 20px;
+      margin: 10px 5px 0 5px;
       border-radius: 5px;
       transition: transform 0.2s ease;
     }
 
-    .copy-btn:hover, .theme-btn:hover {
+    .copy-btn:hover,
+    .theme-btn:hover {
       background-color: var(--btn-hover);
       transform: scale(1.05);
     }
 
-    .copy-btn:active, .theme-btn:active {
+    .copy-btn:active,
+    .theme-btn:active {
       transform: scale(0.95);
     }
 
     .notification {
       display: none;
-      position: fixed;
+      position: absolute;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
       background-color: var(--btn);
       color: white;
-      padding: 10px 20px;
+      padding: 10px;
       border-radius: 5px;
       font-size: 16px;
       opacity: 0;
       transition: opacity 0.5s;
     }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
   </style>
 </head>
 <body>
-  <h1>TOTO12</h1>
+
+  <!-- 🎬 JUDUL GIF -->
+  <div class="judul-gif">
+    <img src="https://imagme.com/images/2024/11/11/gif-toto12.gif" alt="Judul GIF">
+  </div>
+
+  <!-- 🌗 TOMBOL DARK MODE -->
   <button class="theme-btn" onclick="toggleTheme()">🌗 Ganti Tema</button>
 
+  <!-- 📋 FORM SALIN -->
   <div class="login-form">
     <label for="full-text">Silahkan di Login Ya bosku Dengan</label>
     <textarea id="full-text" class="input-field" rows="8" readonly>
@@ -118,11 +140,12 @@ Link login : https://toto12bulan.org
     <button class="copy-btn" onclick="copyAndChangePassword()">Copy Cok!</button>
   </div>
 
+  <!-- 🔔 NOTIFIKASI -->
   <div class="notification" id="notification">Teks berhasil disalin!</div>
 
+  <!-- ⚙️ SCRIPT -->
   <script>
     const passwords = ["bunga123", "kucing456", "apel789", "matahari22"];
-
     const prefixList = ["gacor", "jitu", "bola", "maxwin"];
     for (const prefix of prefixList) {
       for (let i = 1; i <= 999; i++) {
@@ -131,11 +154,10 @@ Link login : https://toto12bulan.org
       }
     }
 
-    const filteredPasswords = passwords.filter(pw => pw.length >= 6);
+    const filteredPasswords = passwords.filter((pw) => pw.length >= 6);
 
     function copyAndChangePassword() {
       const password = filteredPasswords[Math.floor(Math.random() * filteredPasswords.length)];
-
       const newText = `Silahkan di Login Ya bosku Dengan
 
 ID :
