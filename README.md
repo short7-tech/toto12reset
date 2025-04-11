@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GANTI PASSWORD ABANGKUHHH!</title>
+
+  <!-- 🧠 FAVICON -->
+  <link rel="icon" href="https://photosaya.io/images/2024/07/09/LOGO.png" type="image/png"/>
+
   <style>
     :root {
       --bg: rgba(255, 255, 255, 0.95);
@@ -145,7 +149,7 @@
     <img src="https://imagme.com/images/2024/11/11/gif-toto12.gif" alt="Judul GIF">
   </div>
 
-  <!-- 🌗 TOMBOL DARK MODE & MUTE -->
+  <!-- 🌗 DARK MODE & MUTE -->
   <button class="theme-btn" onclick="toggleTheme()">🌗 Ganti Tema</button>
   <button class="mute-btn" onclick="toggleMute()">🔊 Mute</button>
 
@@ -166,10 +170,10 @@ Link login : https://toto12bulan.org
     <button class="copy-btn" onclick="copyAndChangePassword()">Copy Cok!</button>
   </div>
 
-  <!-- 🔔 NOTIF -->
+  <!-- 🔔 NOTIFIKASI -->
   <div class="notification" id="notification">Teks berhasil disalin!</div>
 
-  <!-- ✨ SALJU -->
+  <!-- ✨ SCRIPT: SALJU -->
   <script>
     const canvas = document.getElementById("snow");
     const ctx = canvas.getContext("2d");
@@ -235,7 +239,7 @@ Link login : https://toto12bulan.org
     animateFlakes();
   </script>
 
-  <!-- 📋 LOGIC PASSWORD -->
+  <!-- 📋 SCRIPT: PASSWORD + SALIN -->
   <script>
     const passwords = ["bunga123", "kucing456", "apel789", "matahari22"];
     const prefixList = ["gacor", "jitu", "bola", "maxwin"];
@@ -288,10 +292,13 @@ Link login : https://toto12bulan.org`;
       }
     }
 
-    // Set volume awal ke 50%
-    window.onload = function () {
-      document.getElementById("backsound").volume = 0.5;
-    };
+    document.addEventListener("DOMContentLoaded", function () {
+      const backsound = document.getElementById("backsound");
+      backsound.volume = 0.5;
+      document.body.addEventListener("click", () => {
+        if (backsound.paused) backsound.play();
+      }, { once: true });
+    });
   </script>
 </body>
 </html>
