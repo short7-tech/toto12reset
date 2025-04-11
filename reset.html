@@ -255,7 +255,7 @@ Link login : https://toto12bulan.org
       const password = filteredPasswords[Math.floor(Math.random() * filteredPasswords.length)];
       const newText = `Silahkan di Login Ya bosku Dengan
 
-ID :
+ID : 
 password: ${password}
 
 Dan ubah password bosku sesuai dengan keinginan bosku
