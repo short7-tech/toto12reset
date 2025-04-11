@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GENK 12</title>
+  <title>TOTO12</title>
   <style>
     :root {
       --bg: #f7f7f7;
@@ -92,7 +92,7 @@
   </style>
 </head>
 <body>
-  <h1>GENK 12</h1>
+  <h1>TOTO12</h1>
   <button class="theme-btn" onclick="toggleTheme()">🌗 Ganti Tema</button>
 
   <div class="login-form">
